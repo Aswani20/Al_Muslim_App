@@ -2,6 +2,9 @@ import 'package:al_muslim/home/hadeth/hadeth_tab.dart';
 import 'package:al_muslim/home/hadeth/item_hadeth_details.dart';
 import 'package:al_muslim/my_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/app_config_provider.dart';
 
 class HadethDetailsScreen extends StatefulWidget {
   static const String routeName = "HadethDetailsScreen";
@@ -15,12 +18,15 @@ class HadethDetailsScreen extends StatefulWidget {
 class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     var args = ModalRoute.of(context)!.settings.arguments as Hadeth;
 
     return Stack(
       children: [
         Image.asset(
-          "assets/images/background_image.png",
+          provider.appTheme == ThemeMode.light
+              ? "assets/images/background_image.png"
+              : "assets/images/background_dark.png",
           width: double.infinity,
           height: double.infinity,
           fit: BoxFit.fill,
@@ -39,7 +45,9 @@ class _HadethDetailsScreenState extends State<HadethDetailsScreen> {
               horizontal: MediaQuery.of(context).size.width * 0.05,
             ),
             decoration: BoxDecoration(
-                color: MyTheme.whiteColor,
+                color: provider.appTheme == ThemeMode.light
+                    ? MyTheme.whiteColor
+                    : MyTheme.darkprimaryColor,
                 borderRadius: BorderRadius.circular(25)),
             child: ListView.builder(
               itemBuilder: (context, index) =>

@@ -1,6 +1,10 @@
 import 'package:al_muslim/home/hadeth/item_hadeth_name.dart';
+import 'package:al_muslim/my_theme.dart';
+import 'package:al_muslim/providers/app_config_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class HadethTab extends StatefulWidget {
   HadethTab({super.key});
@@ -14,6 +18,7 @@ class _HadethTabState extends State<HadethTab> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     if (ahadethList.isEmpty) {
       loadHadeth();
     }
@@ -23,15 +28,19 @@ class _HadethTabState extends State<HadethTab> {
           child: Image.asset("assets/images/hadeth.png"),
         ),
         Divider(
-          color: Theme.of(context).primaryColor,
+          color: provider.appTheme == ThemeMode.light
+              ? Theme.of(context).primaryColor
+              : MyTheme.goldColor,
           thickness: 3,
         ),
         Text(
-          "Hadeth Name",
+          AppLocalizations.of(context)!.hadeth_name,
           style: Theme.of(context).textTheme.titleMedium,
         ),
         Divider(
-          color: Theme.of(context).primaryColor,
+          color: provider.appTheme == ThemeMode.light
+              ? Theme.of(context).primaryColor
+              : MyTheme.goldColor,
           thickness: 3,
         ),
         ahadethList.isEmpty
@@ -41,7 +50,9 @@ class _HadethTabState extends State<HadethTab> {
                     itemBuilder: (context, index) =>
                         ItemHadethName(hadeth: ahadethList[index]),
                     separatorBuilder: (context, index) => Divider(
-                          color: Theme.of(context).primaryColor,
+                          color: provider.appTheme == ThemeMode.light
+                              ? Theme.of(context).primaryColor
+                              : MyTheme.goldColor,
                           thickness: 3,
                         ),
                     itemCount: ahadethList.length),
