@@ -41,41 +41,48 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           body: tabs[selectedIndex],
-          bottomNavigationBar: Theme(
-            data: Theme.of(context).copyWith(
-              canvasColor: Theme.of(context).primaryColor,
+          bottomNavigationBar: ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30.0),
+              topRight: Radius.circular(30.0),
             ),
-            child: BottomNavigationBar(
-              currentIndex: selectedIndex,
-              onTap: (index) {
-                selectedIndex = index;
-                setState(() {});
-              },
-              items: [
-                BottomNavigationBarItem(
-                    icon: ImageIcon(
-                      AssetImage("assets/images/quran_icon.png"),
-                    ),
-                    label: AppLocalizations.of(context)!.quran),
-                BottomNavigationBarItem(
-                    icon: ImageIcon(
-                      AssetImage("assets/images/hadeth_icon.png"),
-                    ),
-                    label: AppLocalizations.of(context)!.hadeth),
-                BottomNavigationBarItem(
-                    icon: ImageIcon(
-                      AssetImage("assets/images/sebha_icon.png"),
-                    ),
-                    label: AppLocalizations.of(context)!.sebha),
-                BottomNavigationBarItem(
-                    icon: ImageIcon(
-                      AssetImage("assets/images/radio_icon.png"),
-                    ),
-                    label: AppLocalizations.of(context)!.radio),
-                BottomNavigationBarItem(
-                    icon: Icon(Icons.settings),
-                    label: AppLocalizations.of(context)!.setting),
-              ],
+            child: Theme(
+              data: Theme.of(context).copyWith(
+                canvasColor: Theme.of(context).primaryColor,
+              ),
+              child: BottomNavigationBar(
+                currentIndex: selectedIndex,
+                onTap: (index) {
+                  selectedIndex = index;
+                  setState(() {});
+                },
+                items: [
+                  BottomNavigationBarItem(
+                      icon: ImageIcon(
+                        AssetImage("assets/images/quran_icon.png"),
+                        size: 35,
+                      ),
+                      label: AppLocalizations.of(context)!.quran),
+                  BottomNavigationBarItem(
+                      icon: ImageIcon(
+                          AssetImage("assets/images/hadeth_icon.png"),
+                          size: 35),
+                      label: AppLocalizations.of(context)!.hadeth),
+                  BottomNavigationBarItem(
+                      icon: ImageIcon(
+                          AssetImage("assets/images/sebha_icon.png"),
+                          size: 35),
+                      label: AppLocalizations.of(context)!.sebha),
+                  BottomNavigationBarItem(
+                      icon: ImageIcon(
+                          AssetImage("assets/images/radio_icon.png"),
+                          size: 35),
+                      label: AppLocalizations.of(context)!.radio),
+                  BottomNavigationBarItem(
+                      icon: Icon(Icons.settings, size: 35),
+                      label: AppLocalizations.of(context)!.setting),
+                ],
+              ),
             ),
           ),
         ),

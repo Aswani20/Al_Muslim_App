@@ -46,6 +46,7 @@ class MyTheme {
         centerTitle: true,
         iconTheme: IconThemeData(color: whiteColor)),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      elevation: 10,
       selectedItemColor: goldColor,
       unselectedItemColor: whiteColor,
     ),
